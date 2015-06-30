@@ -8,6 +8,11 @@ using namespace sf;
 
 namespace sfu{
 
+template< typename IN, typename OUT >
+Vector2<OUT> convertVector2( const Vector2<IN> &vec ) {
+	return Vector2<OUT>( (IN)vec.x, (IN)vec.y ); 
+}
+
 RectangleShape getRectForCorners( Vector2f one, Vector2f two ){
 	RectangleShape rect;
 	rect.setPosition( std::min( one.x, two.x), std::min( one.y, two.y ) );
