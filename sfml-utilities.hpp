@@ -4,7 +4,16 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+using namespace sf;
+
 namespace sfu{
+
+RectangleShape getRectForCorners( Vector2f one, Vector2f two ){
+	RectangleShape rect;
+	rect.setPosition( std::min( one.x, two.x), std::min( one.y, two.y ) );
+	rect.setSize( Vector2f( fabs( one.x - two.x ), fabs( one.y - two.y ) ) );
+	return rect;
+}
 
 char quadrant( sf::Vector2f v ){
 	if( v.x > 0 ){ // I or VI
