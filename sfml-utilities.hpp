@@ -51,6 +51,20 @@ template<typename T>
 struct SimplePolygon{
 	std::vector<Vector2<T>> points;
 
+	bool checkConvex(){
+		for (int i = 0; i < points.size() + 4; ++i)
+		{
+			auto zeroth = points[(i+3)%points.size()];
+			auto first = points[(i+2)%points.size()];
+			auto second = points[(i+1)%points.size()];
+			auto third = points[(i+0)%points.size()];
+			if( angleBetween(third-second, second-first) *
+				angleBetween(second-first, first-zeroth) < 0 )
+				return false;
+		}
+		return true;
+	}
+
 	// functions bellow to insure compatibility with sf::ConvexShape
 	void setPointCount(unsigned int count){
 		while( points.size() < count )
