@@ -46,6 +46,30 @@ struct SimpleRectangle{
 	}
 };
 
+// this one, however, has no analog in sfml that I know of.
+template<typename T>
+struct SimplePolygon{
+	std::vector<Vector2<T>> points;
+
+	// functions bellow to insure compatibility with sf::ConvexShape
+	void setPointCount(unsigned int count){
+		while( points.size() < count )
+			points.push_back( Vector2<T>() );
+	}
+
+	unsigned getPointCount() const{
+		return points.size();
+	}
+
+	void setPoint(unsigned index, const Vector2<T> &point){
+		points[index] = point;
+	}
+
+	Vector2<T> getPoint(unsigned index) const{
+		return points[index];
+	}
+};
+
 template< typename T>
 static inline RectangleShape getRectForCorners( Vector2<T> one, Vector2<T> two ){
 	RectangleShape rect;
