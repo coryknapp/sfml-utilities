@@ -9,12 +9,12 @@ using namespace sf;
 namespace sfu{
 
 static inline char quadrant( sf::Vector2f v ){
-	if( v.x > 0 ){ // I or VI
-		if( v.y > 0 )
+	if( v.x >= 0 ){ // I or VI
+		if( v.y >= 0 )
 			return 1; // I
 		return 4;
 	} else { // II or III
-		if( v.y > 0 )
+		if( v.y >= 0 )
 			return 2;
 		return 3;
 	}

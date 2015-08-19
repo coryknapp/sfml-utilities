@@ -4,45 +4,16 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
-#include "include/trigonometry.hpp"
+using namespace sf;
 
 template< typename IN, typename OUT >
 static inline Vector2<OUT> convertVector2( const Vector2<IN> &vec ) {
 	return Vector2<OUT>( (IN)vec.x, (IN)vec.y );
 }
 	
-// some new types that can be useful
-// For example, I made this while unaware of sf::Rect.
-template<typename T>
-struct SimpleRectangle{
 
-	Vector2<T> position;
-	Vector2<T> size;
-
-	SimpleRectangle() = default;
-	SimpleRectangle( const RectangleShape &rect ){
-		position = convertVector2<float, T>(rect.getPosition());
-		size = convertVector2<float, T>(rect.getSize());
-	}
-	SimpleRectangle( const Rect<T> &rect ){
-		position.x = rect.left;
-		position.y = rect.top;
-		size.x = rect.width;
-		size.y = rect.height;
-	}
-	operator RectangleShape(){
-		RectangleShape rect;
-		rect.setPosition( convertVector2<T, float>( position ) );
-		rect.setSize( convertVector2<T, float>( size ) );
-		return rect;
-	}
-	operator Rect<T>(){
-		RectangleShape rect;
-		rect.setPosition( convertVector2<T, float>( position ) );
-		rect.setSize( convertVector2<T, float>( size ) );
-		return rect;
-	}
-};
+#include "include/trigonometry.hpp"
+#include "include/SimpleRect.hpp"
 
 // this one, however, has no analog in sfml that I know of.
 template<typename T>
